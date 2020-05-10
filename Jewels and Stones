@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+        unordered_map<char,int> smap;
+        for(auto i:S)
+        {
+            smap[i]++;
+        }
+        unordered_set<char> jset;
+        for(auto i:J)
+            jset.insert(i);
+        long int sum=0;
+        for(auto i:jset)
+            sum+=smap[i];
+        return sum;
+    }
+};
