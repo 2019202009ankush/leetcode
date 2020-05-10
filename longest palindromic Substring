@@ -1,0 +1,55 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if(s.empty()) return s;
+        if(s.size()==1) return s;
+        int gm=INT_MIN;
+        int gl=-1;
+        int gr=-1;
+        for(int i=0;i<s.size();i++)
+        {
+          //even
+            int left=i;
+          int   right=i+1;
+            while(left>=0&&right<s.size()){
+                 if(s[left]==s[right])
+                    {
+                        if(gm<right-left+1)
+                        {
+                            gm=right-left+1;
+                            gl=left;
+                            gr=right;
+                        }
+                       left--;
+                       right++;
+                    }
+                 else{
+                     break;
+                 }
+            }
+           
+          //odd
+            left=i;
+            right=i;
+            while(left>=0&&right<s.size()){
+                 if(s[left]==s[right])
+                    {
+                        if(gm<right-left+1)
+                        {
+                            gm=right-left+1;
+                            gl=left;
+                            gr=right;
+                        }
+                       left--;
+                       right++;
+                    }
+                 else{
+                     break;
+                 }
+            }
+           
+        }
+        string ss=s.substr(gl,gr-gl+1)  ;
+         return ss;
+    }
+};

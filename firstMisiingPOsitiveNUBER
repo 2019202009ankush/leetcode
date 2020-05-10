@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        bool is1=0;
+       for(int i=0;i<nums.size();i++)
+       {
+           if(nums[i]==1) is1=1;
+           
+       }
+    if(is1)
+    {
+      for(int i=0;i<nums.size();i++)
+      {
+       if(nums[i]>nums.size()||(nums[i]<=0)) nums[i]=1;
+      }
+         // for(int i=0;i<nums.size();i++) cout<<nums[i]<<endl;
+      for(int i=0;i<nums.size();i++)
+      {
+         // cout<<nums[i]<<endl;
+        if(abs(nums[i])==nums.size()) {
+            nums[0]=(abs(nums[0]))*-1;
+            cout<<"nums"<<nums[0]<<endl;
+        }
+        else{
+            int idx=abs(nums[i]);
+            // cout<<"idx="<<idx<<endl;
+            nums[idx]=abs(nums[idx])*-1;
+            // cout<<nums[idx]<<endl;
+        }
+       
+      }
+        // int ans=-1;
+        // int mx=INT_MIN;
+        // for(int i=0;i<nums.size();i++) cout<<nums[i]<<endl;
+        
+         for(int i=1;i<nums.size();i++) if(nums[i]>0) {return i;};
+        if(nums[0]>0) return nums.size();
+        return nums.size()+1;
+        
+    }
+        else return  1;
+    }
+};

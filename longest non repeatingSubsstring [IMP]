@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.empty()) return 0;
+        else if(s.size()==1) return 1;
+        else if(s.size()==2) {
+            if(s[0]==s[1]) return 1;
+            else return 2;
+        }
+        unordered_map<char,int> m;
+        int i=0;
+        int j=0;
+        int gm=INT_MIN;
+        for(j=0;j<s.size();)
+        {
+            if(m.find(s[j])==m.end())
+            {
+                m[s[j]]=j;
+                j++;
+            }
+            else
+            {
+                gm=max(gm,j-i);
+               int   ii=m[s[j]]+1;
+                // cout<<ii<<endl;
+                for(int k=i;k<ii;k++) m.erase(s[k]);
+                i=ii;
+                
+            }
+           
+        }
+        
+            gm=max(gm,j-i);
+        return gm;
+    }
+};

@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+        bool isal=1;
+        for(auto i:str)
+        {
+            if(i!=' ') isal=0;
+        }
+        cout<<isal<<endl;
+        if(isal) return 0;
+        else
+        // str=str.substr(i);
+        { 
+        stringstream ss(str);
+        int s;
+        ss>>s;
+        
+        return s;
+        }
+    }
+};
