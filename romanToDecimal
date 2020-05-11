@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        map<string,int> m;
+        m["M"]=1000;
+        m["D"]=500;
+        m["C"]=100;
+        m["L"]=50;
+        m["X"]=10;
+        m["V"]=5;
+        m["I"]=1;
+        m["IV"]=4;
+        m["IX"]=9;
+        m["XL"]=40;
+        m["XC"]=90;
+        m["CD"]=400;
+        m["CM"]=900;
+        int sumi=0;
+        for(int i=0;i<s.size();)
+        {
+          string temp="";
+            temp+=s[i];
+            if(i+1<s.size()) temp+=s[i+1];
+          if(m.find(temp)!=m.end()) {sumi+=m[temp]; i+=2;}
+           else{ string temp="";temp+=s[i]; sumi+=m[temp]; i++;}
+        }
+        return sumi;
+    }
+};
