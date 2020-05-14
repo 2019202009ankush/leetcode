@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void go(vector<int>&candidate,int i,vector<int> s,int target,vector<vector<int> > & v)
+    {
+        if(i>candidate.size()) return;
+        if(i==candidate.size()&&!s.empty()&&target==0) v.push_back(s);
+        if(i==candidate.size()&&target!=0) return;
+        else if(target==0) v.push_back(s);
+        else if(target<0) return;
+        else
+        {
+            cout<<i<<"  "<<target<<endl;
+            go(candidate,i+1,s,target,v);
+            s.push_back(candidate[i]);
+            go(candidate,i,s,target-candidate[i],v);
+            s.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        if(target==0) return {{}};
+        if(candidates.size()==0) return {};
+        vector<vector<int> > v;
+        vector<int> s;
+        go(candidates,0,s,target,v);
+        return v;
+    }
+};

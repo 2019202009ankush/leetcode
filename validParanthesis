@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.size()==0) return 1;
+        
+        map<char,char> m;
+        m[')']='(';
+        m['}']='{';
+        m[']']='[';
+        stack<char> ss;
+        for(int i=0;i<s.size();i++)
+        {
+            if(m.find(s[i])!=m.end())
+            {
+               if(!ss.empty()&&ss.top()==m[s[i]]) ss.pop();
+               else return 0;
+            }
+            else ss.push(s[i]);
+        }
+        return ss.empty();
+    }
+};

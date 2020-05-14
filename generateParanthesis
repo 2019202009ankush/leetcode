@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void go(string s,int op,int oc,vector<string>&  v,int n)
+    {
+      // cout<<op<<"  "<<oc<<endl;
+      if(op==n&&oc==n){
+          // cout<<s<<endl;
+           v.push_back(s);
+      }
+      else if(op>n) return;
+      else if(oc>n) return;
+      else if(op>oc)
+      {
+          go(s+'(',op+1,oc,v,n);
+          go(s+')',op,oc+1,v,n);
+      }
+      else if(op==oc)
+      {
+          go(s+'(',op+1,oc,v,n);
+      }
+    }
+    vector<string> generateParenthesis(int n) {
+        if(n==0) return {""};
+        string s="(";
+        int op=1;
+        int oc=0;
+        vector<string> v;
+        go(s,op,oc,v,n);
+        return v;
+    }
+};

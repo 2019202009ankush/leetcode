@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
+        if(A.size()==0||B.size()==0||C.size()==0||D.size()==0) return 0;
+        int ans=0;
+        unordered_map<int,int> m,m1;
+        for(int i=0;i<C.size();i++)
+        {
+            for(int j=0;j<D.size();j++)
+            {
+                m[(C[i]+D[j])]++;
+            }
+        }
+        for(int i=0;i<A.size();i++)
+        {
+            for(int j=0;j<B.size();j++)
+            {
+                m1[(A[i]+B[j])]++;
+            }
+        }
+        
+        for(auto it=m1.begin();it!=m1.end();it++)
+        {
+            
+           if(m.find(-(it->first))!=m.end())
+           {
+               // cout<<(it->first)<<endl;
+              ans+=(m[-(it->first)]*(it->second));
+              
+              
+           }
+        }
+        return ans;
+    }
+};
